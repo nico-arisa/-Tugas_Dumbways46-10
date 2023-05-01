@@ -4,11 +4,7 @@ body{
 }
 
 /* navbar styling */
-nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 40px;
+.navbar{
     background-color: #f4f3f3;
 }
 
@@ -36,12 +32,12 @@ nav{
     color: white;
 }
 
-nav img{
+/* nav img{
     padding-right: 50px;
     align-items: center;
     justify-content: center;
     width: 10%;
-}
+} */
 
 /*  card styling       */
 .card{
@@ -70,21 +66,16 @@ nav img{
     padding-left: 20px;
 }
 .social{
-    padding-top: 50px;
+    padding-top: 30px;
 }
 
 .social a {
-    padding-right: 30px;
+    padding-right: 20px;
 }
 
 .foto{
     border-radius: 10px;
-    box-shadow: 0 0 30px #a7aaad;
-    padding: 0 0 10px 0;
-    margin: 30px;
-}
-.pasfoto{
-    border-radius: 10px 10px 0 0;
+    box-shadow: 0 0 20px #a7aaad;
 }
 .nama-bawah{
     text-align: center;
@@ -210,6 +201,7 @@ button{
     grid-template-columns: auto auto auto;
     margin-top: 20px;
 }
+
 .name-myproject{
     display: flex  ;
     align-items: center;
@@ -225,8 +217,14 @@ button{
     padding: 10px 20px;
     margin: 50 10px;
 }
-
 .card-myproject img{
+    width: 100%;
+    border-radius: 10px;
+    height: 266.14px;
+    
+}
+
+.foto-card{
     width: 100%;
     border-radius: 10px;
     height: 266.14px;
@@ -251,6 +249,11 @@ button{
 .button-card-myarticle{
     display: grid;
     grid-template-columns: auto auto;
+}
+
+.row h3 a{
+    text-decoration: none;
+    color: black;
 }
 
 .card-myproject h3 a{

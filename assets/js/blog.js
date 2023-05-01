@@ -1,7 +1,6 @@
 let dataProject = []
 let i = 0
 
-
 function getProject(event) {
 
     
@@ -43,22 +42,22 @@ function getProject(event) {
         reactJs, 
         typeScript, 
         upimg,
-        postedAt:new Date()
+        postedAt: new Date()
     }
 
     dataProject.push(data)
     console.log(dataProject)
-
     showData()
 
  
 }
 
 
+// let i = 0
 function showData() {
-    let containerResult = document.getElementById('articlemyproject')
-
-    containerResult.innerHTML += `
+    document.getElementById("articlemyproject").innerHTML =""
+    for (let i = 0; i < dataProject.length; i++) {
+    document.getElementById("articlemyproject").innerHTML += `
     <div class="card-myproject">
     <img src="${dataProject[i].upimg}" >
     <h3>${dataProject[i].projectName}</h3>
@@ -79,7 +78,7 @@ function showData() {
             <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12.5 8V7.83333C12.5 7.09695 11.903 6.5 11.1667 6.5H10C9.17157 6.5 8.5 7.17157 8.5 8C8.5 8.82843 9.17157 9.5 10 9.5H11C11.8284 9.5 12.5 10.1716 12.5 11C12.5 11.8284 11.8284 12.5 11 12.5H10C9.17157 12.5 8.5 11.8284 8.5 11M8 6.5H3M5.5 6.5V13M0.5 0.5H14.5V14.5H0.5V0.5Z" stroke="#000000"></path> </g></svg>
         </span>
         <p class="postedAt" >
-        posted at : ${getPosted(dataProject[i].postedAt)}
+         Posted at : ${getDuration(dataProject[i].postedAt)}
     </p>
         <div class="button-card-myarticle">
             <button class="button-edit">edit</button>
@@ -89,20 +88,22 @@ function showData() {
 </div>
     
     
-    `
+    `}
+ 
+if (dataProject[i].nodeJs == false) {
+    document.getElementById(`iconNodeJs${i}`).style.display = "none"
+} 
+if (dataProject[i].nextJs == false) {
+    document.getElementById(`iconNextJs${i}`).style.display = "none"
+} 
+if (dataProject[i].reactJs == false) {
+    document.getElementById(`iconReactJs${i}`).style.display = "none"
+} 
+if (dataProject[i].typeScript == false) {
+    document.getElementById(`iconTypeScript${i}`).style.display = "none"
+}
 
-    if (dataProject[i].nodeJs == false) {
-        document.getElementById(`iconNodeJs${i}`).style.display = "none"
-    } 
-    if (dataProject[i].nextJs == false) {
-        document.getElementById(`iconNextJs${i}`).style.display = "none"
-    } 
-    if (dataProject[i].reactJs == false) {
-        document.getElementById(`iconReactJs${i}`).style.display = "none"
-    } 
-    if (dataProject[i].typeScript == false) {
-        document.getElementById(`iconTypeScript${i}`).style.display = "none"
-    }
+
 
     function createDuration(startDate, endDate) {
         let distance = new Date(endDate) - new Date(startDate)
@@ -122,29 +123,30 @@ function showData() {
         }
      }
     
-    function getPosted(time){
-        const posted = new Date() - new Date(time)
-        const dayPosted = Math.floor(posted / ( 24 * 60 * 60 * 1000 ))
-        if(dayPosted > 0) {
-            return dayPosted + " day ago"
-        }else {
-            const hourPosted = Math.floor(posted/ ( 60* 60* 1000))
-            if(hourPosted > 0 ){
-                return hourPosted + " hour ago"
-            }else {
-                const minutesPosted = Math.floor(posted / ( 60 * 1000))
-                if(minutesPosted > 0 ){
-                    return minutesPosted + " minutes ago"
-                } else{
-                    const secondPosted = Math.floor(posted/1000)
-                    if(secondPosted > 0) {
-                        return secondPosted + " second ago"
-                    }
-                }
+     function getDuration(time) {
+        console.log(time)
+        const distance = new Date() - new Date(time)
+        console.log(distance)
+        const dayDistance = Math.floor(distance / (24 * 60 * 60 * 1000))
+        if(dayDistance > 0) {
+          return dayDistance + " Day Ago" // 1 day ago
+        } else {
+          const hourDistance = Math.floor(distance / (60 * 60 * 1000))
+          if(hourDistance > 0) {
+            return hourDistance + " Hour Ago" // 3 hour ago
+          } else {
+            const minuteDistance =  Math.floor(distance / (60 * 1000))
+            if(minuteDistance > 0) {
+              return minuteDistance + " Minute Ago" // 55 minute ago
+            } else {
+              const secondDistance = Math.floor(distance / 1000)
+              if(secondDistance > 0) {
+                return secondDistance + " Second Ago" // 45 second ago 
+              }
             }
+          }
         }
-    }
-    i++
-} 
+      } 
 
-setInterval(dataProject, 1000)
+    }
+setInterval(showData, 1000)
